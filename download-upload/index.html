@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS FileUpload</title>   
+    <link rel="stylesheet" href="css/upload.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+	<body ng-app="fileUpload" ng-controller="MyCtrl">  
+	 <div class="container">    
+	  <div class="row">
+	   <div class="col-md-12">
+        <div class="panel-body" style="width: 810px;margin-top: 40px;">
+	     <table class="table table-hover table-striped table-bordered">
+	       <thead>
+	            <tr>
+	                <th>File Name</th>
+	                <th>Size</th>
+	                <th>Action</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr ng-repeat="u in uploads">
+	                <td><div ngf-select="upload(files,u.slot)" ng-model="files" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf"><button data-ng-show='!u.data.name' ng-disabled='!u.active'>Browse...</button></div>{{u.data.name}}</div></td>
+	                <td>{{u.data.size}}</td>	                
+	                <td><img data-ng-src="{{u.data.name && 'img/delete.svg' || 'img/delete-disabled.svg'}}" class="card-handle"></td>
+	            </tr>
+	        </tbody>
+	      </table>
+	     </div>
+	   </div> 
+     </div>
+     <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf">Drop pdfs or images here or click to upload</div>
+	 <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>    
+    </div>
+    <script data-require="angular.js@1.5.7" src="https://code.angularjs.org/1.4.9/angular.js" data-semver="1.4.9"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="app/fileUpload.js"></script>
+    <script src="js/ng-file-upload-shim.js"></script>
+    <script src="js/ng-file-upload.js"></script>
+</body>
+
+</html>
