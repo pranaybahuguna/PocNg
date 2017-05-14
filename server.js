@@ -5,6 +5,7 @@ var multiparty = require('connect-multiparty'),
 multipartyMiddleware = multiparty();
 
 var app = express();
+app.set('port', (process.env.PORT || 5001));
 //Getting path pf root directory
 var appDir = path.dirname(require.main.filename);
 app.use(express.static(appDir + '/download-upload'));
@@ -19,5 +20,6 @@ app.post('/demo/upload', multipartyMiddleware, function(req,res){
   res.send(file);
 });
 
-app.listen(2099);
-console.log('Server running on 2099');
+app.listen(app.get('port'), function() {
+  console.log('Node  ng-upload app is running on port', app.get('port'));
+});
