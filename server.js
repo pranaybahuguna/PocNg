@@ -16,7 +16,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/demo/upload', multipartyMiddleware, function(req,res){
-  var file = req.files.file;
+  var file = { 'file' :req.files.file, 'slot' : req.body.file.slot};
   res.send(file);
 });
 
