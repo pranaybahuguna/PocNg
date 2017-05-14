@@ -98,6 +98,7 @@ app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Uplo
 	   fileCount = 0;
 	   for(var i = 0 ; i < $scope.uploads.length ; i++){
 		   $scope.uploads[i].data = '';
+		   $scope.uploads[i].percentage = '';
 	   }
    }; 
     
