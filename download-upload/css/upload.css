@@ -17,12 +17,11 @@
 .drop-box {
     background: #F8F8F8;
     border: 5px dashed #DDD;
-    width: 782px;
+    width: 637px;
     height: 108px;
     text-align: -webkit-center;
     padding-top: 25px;
     margin-left: 15px;
-    margin-top: 31px;
 }
 .dragover {
     border: 5px dashed blue;

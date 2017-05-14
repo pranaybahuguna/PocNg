@@ -76,8 +76,8 @@ app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Uplo
                 var fileName = config._file.name;
                 uploadSuccessFiles.push(fileName);
                 if(uploadSuccessFiles.length == fileCount){
-                	$scope.notification.head='Success';
-                	$scope.notification.message='Files uploaded successfully!!';
+                	$scope.notification.head='Success : ';
+                	$scope.notification.message='File(s) uploaded successfully!!';
                 	$scope.notification.result='success';
                 	$scope.uploadComplete = true;
                 }

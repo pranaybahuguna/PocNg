@@ -8,11 +8,11 @@
   </head>
 	<body ng-app="fileUpload" ng-controller="MyCtrl">  
 	 <div class="container">
-	 <div class="container" style="text-align: center;margin-top: 32px;margin-left: 49px;">
+	 <div class="container" style="text-align: center;margin-top: 32px;">
 	 <button type="button" class="btn btn-warning" data-ng-click='reset()' data-ng-disabled="!filesAvailable">Reset</button>    
 	 <button type="button" class="btn btn-success" data-ng-click='upload(uploads)' data-ng-disabled="!filesAvailable">Upload</button>
 	 </div>
-	 <div data-ng-show="uploadComplete" style="width: 781px;margin-top: 6px;margin-left: 14px;margin-bottom: 0px;" data-ng-class="{'alert alert-success alert-dismissable fade in' : notification.result === 'success', 'alert alert-danger alert-dismissable fade in': notification.result === 'failure'}">
+	 <div data-ng-show="uploadComplete" style="width: 639px;margin-top: 6px;margin-left: 14px;margin-bottom: 0px;" data-ng-class="{'alert alert-success alert-dismissable fade in' : notification.result === 'success', 'alert alert-danger alert-dismissable fade in': notification.result === 'failure'}">
 	 <a href="#" class="close" data-dismiss="alert" aria-label="close" data-ng-click='clearNotifications()'>&times;</a>
 	 <strong>{{notification.head}}</strong>
 	 {{notification.message}}
@@ -21,26 +21,26 @@
 	  <div class="row">
 	   <div class="col-md-12">
         <div class="panel-body" style="width: 810px;margin-top: 0px;">
-	     <table class="table table-hover table-striped table-bordered">
+	     <table class="table table-hover table-striped table-bordered" style="width: 638px;margin-bottom:5px">
 	       <thead>
 	            <tr>
 	                <th>File Name</th>
-	                <th>Size</th>
-	                <th>Action</th>
+	                <th>Size(Bytes)</th>
+	                <th style="width: 10px;">Remove</th>
 	            </tr>
 	        </thead>
 	        <tbody>
 	            <tr ng-repeat="u in uploads">
 	                <td><div ngf-select="include(files,u.slot)" ng-model="files" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf"><button data-ng-show='!u.data.name'>Browse...</button></div>{{u.data.name}}</div></td>
 	                <td>{{u.data.size}}</td>	                
-	                <td><div ng-click="remove(u.slot)"><img data-ng-src="{{u.data.name && 'img/delete.svg' || 'img/delete-disabled.svg'}}" class="card-handle"></div></td>
+	                <td><div ng-click="remove(u.slot)"><img data-ng-src="{{u.data.name && 'img/delete.svg' || 'img/delete-disabled.svg'}}" class="card-handle" style="margin-left: 17px;"></div></td>
 	            </tr>
 	        </tbody>
 	      </table>
 	     </div>
 	   </div> 
      </div>
-     <div ngf-drop ng-model="files" class="drop-box" ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf">Drop pdfs or images here or click to upload</div>
+     <div ngf-drop ng-model="files" class="drop-box" ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf">Drop Zone : drop your documents here to upload</div>
 	 <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>    
     </div>
     <script data-require="angular.js@1.5.7" src="https://code.angularjs.org/1.4.9/angular.js" data-semver="1.4.9"></script>
