@@ -2,7 +2,7 @@
 var app = angular.module('fileUpload', ['ngFileUpload']);
 app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
 	
-	$scope.uploads = [{'data':'','slot':'0'},{'data':'','slot':'1'},{'data':'','slot':'2'},{'data':'','slot':'3'},{'data':'','slot':'4'}];
+	$scope.uploads = [{'data':'','slot':'0','percentage':''},{'data':'','slot':'1','percentage':''},{'data':'','slot':'2','percentage':''},{'data':'','slot':'3','percentage':''},{'data':'','slot':'4','percentage':''}];
 	var fileCount = 0;
 	$scope.uploadComplete = false;
 	$scope.filesAvailable = false;
@@ -28,6 +28,7 @@ app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Uplo
     
     $scope.remove = function(slot){
     	$scope.uploads[slot].data = '';
+    	$scope.uploads[slot].percentage = '';
     	fileCount = fileCount - 1;
     	if(fileCount == 0){ 
     		$scope.filesAvailable = false;
@@ -58,6 +59,10 @@ app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Uplo
          }
     };
     
+    $scope.ascribePercentage = function(progress,slot){
+    	$scope.uploads[slot].percentage = progress;
+    };
+    
     $scope.upload = function(files){  	
       if (files && files.length) { 
     	var uploadSuccessFiles =[];
@@ -66,10 +71,10 @@ app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Uplo
     		var file = files[i];
         Upload.upload({
             url: '/demo/upload',
-            data: {file: file, 'username': $scope.username}
+            data: {file: file, 'username': $scope.username, slot: i}
         }).progress(function (evt) {
-            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            $scope.log = 'progress: ' + progressPercentage + '% ' + evt.config._file.name + '\n' + $scope.log;
+        	var progress = parseInt(100.0 * evt.loaded / evt.total);
+            $scope.ascribePercentage(progress,evt.config.data.slot);
         }).success(function (data, status, headers, config) {
             $timeout(function () {
                 $scope.log = 'file: ' + config._file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log;
