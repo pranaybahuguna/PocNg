@@ -44,6 +44,7 @@ app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Uplo
                   $scope.uploads[slot].data = file;
                   fileCount = fileCount + 1;
                   $scope.filesAvailable = true;
+                  break;
                 }else{ 
                 	for(var j = 0 ; j < filePermit ; j++){
                     	if($scope.uploads[j].data == '' || $scope.uploads[j].data == undefined ){
